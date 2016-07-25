@@ -45,3 +45,11 @@ You don't need to run `webpack:watch` if you are running the dev server.
 ```
 npm run webpack-dev-server
 ```
+
+In order to get hot reloading working on cloud 9, need to change line 62 of 
+
+webpack-dev-server/client/index.js
+
+to:
+
+protocol: (window.location.protocol == "https:") ?  "https:" : urlParts.protocol,
