@@ -7,10 +7,18 @@ export class App extends React.Component {
         var tableProps = {
             title: "Trunk",
             categories: [
-                "Lean",
-                "Lateral Lean",
-                "Rotates"
-                ]
+                {
+                    name: "Lean",
+                    boxes: [0, 2, 2, 2, 1, 1, 1, 1]
+                },
+                {
+                    name: "Lateral Lean",
+                    boxes: [0, 2, 2, 2, 2, 2, 2, 2]
+                },
+                {
+                    name: "Rotates",
+                    boxes: [0, 1, 1, 1, 1, 1, 1, 1]
+                }]
         }
         
         return (
