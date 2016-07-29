@@ -1,0 +1,27 @@
+{
+  "name": "pt-school-help-server",
+  "version": "1.0.0",
+  "description": "the server side app for pt-school-help",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dskoda1/pt-school-helper.git"
+  },
+  "author": "dskoda1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dskoda1/pt-school-helper/issues"
+  },
+  "homepage": "https://github.com/dskoda1/pt-school-helper#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
+  }
+}
