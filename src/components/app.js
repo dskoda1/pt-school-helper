@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from './table/table';
+import { GaitTable } from './table/GaitTable';
 
 export class App extends React.Component {
     render() {
@@ -25,7 +25,7 @@ export class App extends React.Component {
             <div className="app">
                 <div className="col-md-12">
                     <h1>Gait Analysis</h1>
-                    <Table {...tableProps} />
+                    <GaitTable {...tableProps} />
                 </div>
             </div>
         );
