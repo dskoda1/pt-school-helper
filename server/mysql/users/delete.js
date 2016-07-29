@@ -6,8 +6,7 @@ module.exports = {};
 
 module.exports.selectOne = (userid, cb) => {
 
-    query(`SELECT * FROM users WHERE userid=\'${userid}\';`, (err, rows, fields) => {
-
+    query(`DELETE FROM users WHERE userid=\'${userid}\';`, (err, rows, fields) => {
         if (err) {
             return cb(err);
         }

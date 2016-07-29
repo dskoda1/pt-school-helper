@@ -2,7 +2,7 @@
 
 let mysql = require('mysql');
 
-let connection = mysql.createConnection({
+let connection = mysql.createPool({
     host:'localhost',
     user: 'dskoda1',
     password: '',

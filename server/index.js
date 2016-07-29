@@ -7,7 +7,6 @@ let path = require('path');
 let app = express();
 
 
-// Test mysql
 
 
 

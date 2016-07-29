@@ -6,10 +6,12 @@ let connection = require('./connect');
 
 
 module.exports = (query, cb) => {
-    connection.connect();
+    connection.getConnection();
     connection.query(query, (err, rows, fields) => {
-        if (err) throw err;
+        connection.release();
+        if (err) {
+            cb(err);
+        }
         cb(rows, fields);
     })
-    connection.end();
 }

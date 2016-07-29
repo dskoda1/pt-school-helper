@@ -1,8 +1,15 @@
 'use strict';
 
-let select = require('./select').select;
-let add = require('./add');
+let selectOne = require('./select').selectOne;
+let addUser = require('./add');
 
-select('dskoda');
+selectOne('dskoda', (err) => {
+   if (err) 
+    console.log(err);
+});
 
-add('user', 'user@gmail.com', 'plainPw');
+addUser('user', 'user@gmail.com', 'plainPw', (err) => {
+    if (err) 
+        console.log(err);
+    
+});
