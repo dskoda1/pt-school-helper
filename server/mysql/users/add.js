@@ -14,14 +14,12 @@ module.exports = (userId, email, pw, cb) => {
 
         bcrypt.hash(pw, salt, (err, hash) => {
             if (err) return cb(err);
+            
             qText += `\'${hash}\');`;
             query(qText, (err, rows, fields) => {
-                if (err) {
-                    return cb(err);
-                }
+                return cb(err, rows)
             })
 
-            // Store hash in your password DB.
         });
     });
 

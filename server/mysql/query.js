@@ -3,15 +3,12 @@
 let mysql = require('mysql');
 let connection = require('./connect');
 
-
-
-module.exports = (query, cb) => {
-    connection.getConnection();
-    connection.query(query, (err, rows, fields) => {
-        connection.release();
+module.exports = (query, values, cb) => {
+    connection.query(query, values, (err, rows, fields) => {
         if (err) {
             cb(err);
         }
         cb(rows, fields);
     })
 }
+
