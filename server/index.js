@@ -8,9 +8,6 @@ let app = express();
 
 
 
-
-
-
 app.use(express.static(path.resolve('../client/build')))
 app.listen(process.env.PORT,(err) => {
     if (err) return console.error(err);
@@ -18,11 +15,3 @@ app.listen(process.env.PORT,(err) => {
 
     console.log('listening at ' + process.env.PORT);
 })
-
-// let userid = 'dskoda';
-
-
-// 
-// query(`SELECT password FROM users WHERE userid=${userid};`, (rows, fields) => {
-//     console.log(rows);    
-// })

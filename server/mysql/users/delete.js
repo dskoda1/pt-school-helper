@@ -4,11 +4,10 @@ let query = require('../query');
 
 module.exports = {};
 
-module.exports = (userid, cb) => {
+module.exports = (username, cb) => {
 
-    query(`DELETE FROM users WHERE userid=\'${userid}\';`, (err, rows, fields) => {
+    query(`DELETE FROM users WHERE username=\'${username}\';`, (err, rows, fields) => {
         return cb(err, rows);
-
     })
 
 }
