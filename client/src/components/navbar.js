@@ -1,19 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router'
+import {
+  Link
+}
+from 'react-router'
 
 
 export class Navbar extends React.Component {
 
 
-    render() {
-
-        return (
-            <div>
-            <nav className="navbar navbar-default">
+  render() {
+    let width = {
+      width: '100%'
+    }
+    return (
+      <div>
+        <nav className="navbar navbar-default" style={width}>
           <div className="container-fluid">
-           
+                     
             <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                 <span className="sr-only">Toggle navigation</span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
@@ -22,9 +27,11 @@ export class Navbar extends React.Component {
               <a className="navbar-brand" href="#">PT School</a>
             </div>
             
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div className="collapse navbar-collapse" id="navbar-collapse">
               <ul className="nav navbar-nav">
                 <li><Link to="/GaitTable">Gait Table</Link></li>
+              </ul>
+              <ul className="nav navbar-nav navbar-right">
                 <li><Link to="/Register">Register</Link></li>
               </ul>
             </div>
@@ -34,9 +41,9 @@ export class Navbar extends React.Component {
         </div>
 
 
-        );
+    );
 
-    }
+  }
 }
 
 //   <form className="navbar-form navbar-left">

@@ -5,50 +5,36 @@ export class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
+            username: "",
             email: "",
             password: ""
         }
-        
-        this.changeUserName = this.changeUserName.bind(this);
-        this.changeEmail = this.changeEmail.bind(this);
-        this.changePassword = this.changePassword.bind(this);
+
+        // this.changeUserName = this.changeUserName.bind(this);
+        // this.changeEmail = this.changeEmail.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.registerClick = this.registerClick.bind(this);
     }
-    
-    changeUserName (e) {
-        this.setState(Object.assign(
-            {},
-            this.state,
-            {userName: e.target.value}
-            ));
+
+    handleInputChange(name, e) {
+        this.setState(Object.assign({},
+            this.state, {
+                [name]: e.target.value
+            }
+        ));
     }
-    
-    changeEmail (e) {
-        this.setState(Object.assign(
-            {},
-            this.state,
-            {email: e.target.value}
-            ));
-    }
-    
-    changePassword (e) {
-        this.setState(Object.assign(
-            {},
-            this.state,
-            {password: e.target.value}
-            ));
-    }
-    
+
     registerClick(e) {
-        
-        
+        e.preventDefault();
+       
+        // $.post('/register', this.state, (res) => {
+        //     console.log(res);
+        // })
     }
-    
+
     render() {
         console.log(this.state);
-        
-        let userName = this.state.userName;
+        let username = this.state.username;
         let email = this.state.email;
         let password = this.state.password;
         return (
@@ -57,27 +43,27 @@ export class Register extends React.Component {
                 <label>Username</label>
                 <input  type="username" 
                         className="form-control" 
-                        id="username" 
+                        name="username" 
                         placeholder="Username" 
-                        onChange={this.changeUserName}
-                        value={userName}/>
+                        onChange={this.handleInputChange.bind(this, 'username')}
+                        value={username}/>
               </div>
               <div className="form-group">
                 <label>Email address</label>
                 <input  type="email" 
                         className="form-control" 
-                        id="exampleInputEmail1" 
+                        name="email" 
                         placeholder="Email" 
-                        onChange={this.changeEmail}
+                        onChange={this.handleInputChange.bind(this, 'email')}
                         value={email}/>
               </div>
               <div className="form-group">
                 <label>Password</label>
                 <input  type="password" 
                         className="form-control" 
-                        id="exampleInputPassword1" 
+                        name="password" 
                         placeholder="Password"
-                        onChange={this.changePassword}
+                        onChange={this.handleInputChange.bind(this, 'password')}
                         value={password}/>
               </div>
               <button   type="submit" 
