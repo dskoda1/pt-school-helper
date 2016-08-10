@@ -4,13 +4,12 @@ import React from 'react';
 import bcrypt from 'react-native-bcrypt';
 
 
-export class Register extends React.Component {
+export class Login extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             username: "",
-            email: "",
             password: ""
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,7 +30,7 @@ export class Register extends React.Component {
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(this.state.password, salt);
         
-       fetch('/register', {
+       fetch('/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -39,7 +38,6 @@ export class Register extends React.Component {
             },
             body: JSON.stringify({
                 username: this.state.username,
-                email: this.state.email,
                 password: hash
             })
         })
@@ -51,15 +49,12 @@ export class Register extends React.Component {
                     
                 }
             })
-        // $.post('/register', this.state, (res) => {
-        //     console.log(res);
-        // })
+
     }
 
     render() {
         console.log(this.state);
         let username = this.state.username;
-        let email = this.state.email;
         let password = this.state.password;
         return (
             <form className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
@@ -71,15 +66,6 @@ export class Register extends React.Component {
                         placeholder="Username" 
                         onChange={this.handleInputChange.bind(this, 'username')}
                         value={username}/>
-              </div>
-              <div className="form-group">
-                <label>Email address</label>
-                <input  type="email" 
-                        className="form-control" 
-                        name="email" 
-                        placeholder="Email" 
-                        onChange={this.handleInputChange.bind(this, 'email')}
-                        value={email}/>
               </div>
               <div className="form-group">
                 <label>Password</label>

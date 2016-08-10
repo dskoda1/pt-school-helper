@@ -1,4 +1,6 @@
 'use strict';
+let addUser = require('../mysql/users/add').addHashed; 
+let auth = require('../mysql/users/auth');
 
 module.exports = (router) => {
     
@@ -10,14 +12,40 @@ module.exports = (router) => {
     })
     
     router.post('/register', (req, res) => {
-        let body = JSON.parse(req.body);
-        console.log(body);
-        let ret = {
-            info: "Successful get!"
-        }
-        res.json(ret);
+        console.log(req.body);
+        addUser(
+            req.body.username,
+            req.body.email,
+            req.body.password,
+            (err, rows) => {
+                if (err) {
+                    console.log('caught err in addHashed user');
+                    console.log(err);
+                    res.err(err);
+                }
+                else {
+                    res.json({registration: true,
+                        status: 'Success!'
+                    });
+                }
+            })
     })
     
-    
-    
+    router.post('/login', (req, res) => {
+        auth(
+            req.body.username,
+            req.body.email,
+            (err, res) => {
+                if (err) {
+                    console.log('caught err in authenticating user')
+                    console.log(err);
+                    res.err(err);
+                }
+                else {
+                    res.json({
+                        status: 'Success'
+                    });
+                }
+            })
+    })
 }

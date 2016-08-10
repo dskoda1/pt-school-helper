@@ -9,9 +9,7 @@ let router = express();
 
 // Set up body parsing for posts
 let bp = require('body-parser');
-router.use(bp.urlencoded({
-    extended: false
-}))
+router.use(bp.json({}));
 
 // Set up logging
 var morgan = require('morgan');
@@ -27,7 +25,7 @@ router.use(express.static(path.resolve('../client/build')))
 // Start listening
 router.listen(process.env.PORT,(err) => {
     if (err) return console.error(err);
-        console.log(path.join(__dirname, '../client/build/index.html'))
+    //console.log(path.join(__dirname, '../client/build/index.html'))
 
     console.log('listening at ' + process.env.PORT);
 })
