@@ -1,7 +1,8 @@
-/* global fetch */
+/* global fetch, localStorage */
 
 import React from 'react';
 import bcrypt from 'react-native-bcrypt';
+import { hashHistory } from 'react-router'; 
 
 
 export class Register extends React.Component {
@@ -45,10 +46,11 @@ export class Register extends React.Component {
         })
             .then((res) => {
                 if (res.ok) {
-                    
+                    localStorage.setItem('user', this.state.username);
+                    hashHistory.push('/');
                 }
                 else {
-                    
+                    alert('failed to register!');
                 }
             })
         // $.post('/register', this.state, (res) => {

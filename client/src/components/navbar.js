@@ -1,17 +1,53 @@
+/* global localStorage */
+
 import React from 'react';
-import {
-  Link
-}
-from 'react-router'
+import { Link, hashHistory } from 'react-router';
+import { Login } from './user/login';
+import { Register } from './user/register';
 
 
 export class Navbar extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.checkLogin = this.checkLogin.bind(this);
+    this.getUser = this.getUser.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+  
+  checkLogin() {
+    let user = localStorage.getItem('user');
+    if (user === '') {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  
+  getUser() {
+    return localStorage.getItem('user');
+  }
+  
+  logout() {
+    localStorage.setItem('user', '');
+    hashHistory.push('/');
+  }
 
   render() {
     let width = {
       width: '100%'
     }
+    
+    let userDiv = (this.checkLogin() ?
+            (<ul className="nav navbar-nav navbar-right">
+              <li><a href="#">Hello, {this.getUser()}</a></li>
+              <li onClick={this.logout}><a href="#">Logout</a></li>
+              </ul>) :
+            (<ul className="nav navbar-nav navbar-right">
+              <li><Link to="/Login">Login</Link></li>
+              <li><Link to="/Register">Register</Link></li>
+            </ul>));
     return (
       <div>
         <nav className="navbar navbar-default" style={width}>
@@ -31,9 +67,10 @@ export class Navbar extends React.Component {
               <ul className="nav navbar-nav">
                 <li><Link to="/GaitTable">Gait Table</Link></li>
               </ul>
-              <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/Register">Register</Link></li>
-              </ul>
+              
+                
+                {userDiv}
+              
             </div>
           </div>
         </nav>

@@ -1,8 +1,8 @@
-/* global fetch */
+/* global fetch, localStorage */
 
 import React from 'react';
 import bcrypt from 'react-native-bcrypt';
-
+import { hashHistory } from 'react-router'; 
 
 export class Login extends React.Component {
 
@@ -43,10 +43,11 @@ export class Login extends React.Component {
         })
             .then((res) => {
                 if (res.ok) {
-                    
+                    localStorage.setItem('user', this.state.username);
+                    hashHistory.push('/');
                 }
                 else {
-                    
+                    alert('incorrect login!');
                 }
             })
 

@@ -1,3 +1,5 @@
+/* global localStorage */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router'
@@ -10,7 +12,7 @@ import { Login } from './components/user/login';
 // Add CSS files to bundle
 require('../src/css/application.scss');
 
-
+localStorage.setItem('user', '');
 
 // Render application to DOM
 ReactDOM.render((

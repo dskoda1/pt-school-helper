@@ -34,8 +34,8 @@ module.exports = (router) => {
     router.post('/login', (req, res) => {
         auth(
             req.body.username,
-            req.body.email,
-            (err, res) => {
+            req.body.password,
+            (err, rows) => {
                 if (err) {
                     console.log('caught err in authenticating user')
                     console.log(err);
