@@ -12,12 +12,20 @@ let bp = require('body-parser');
 router.use(bp.json({}));
 
 // Set up logging
-var morgan = require('morgan');
+let morgan = require('morgan');
 router.use(morgan(':method :url in :response-time ms status :status'))
 
 // Set up routes
 let routes = require('./routes/user');
 routes(router);
+
+// Cors approval for express
+let cors = require('cors');
+//router.use(cors());
+
+router.get('/sockjs-node/info', cors(), (req, res) => {
+    res.end();
+})
 
 // Direct express to serve react app in client/build
 router.use(express.static(path.resolve('../client/build')))

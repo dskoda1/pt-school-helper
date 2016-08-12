@@ -65,7 +65,7 @@ export class Navbar extends React.Component {
             
             <div className="collapse navbar-collapse" id="navbar-collapse">
               <ul className="nav navbar-nav">
-                <li><Link to="/GaitTable">Gait Table</Link></li>
+                <li><Link to="/GaitDashboard">Gait Dashboard</Link></li>
               </ul>
               
                 

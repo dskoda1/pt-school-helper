@@ -5,16 +5,29 @@ export class GaitTable extends React.Component {
     
     constructor(props) {
         super(props);
-
+        
+        console.log(JSON.stringify(props));
+        
         // Bind the class methods to this instance
+        this.parseProps = this.parseProps.bind(this);
+        this.parseProps(props);
         this.initialize = this.initialize.bind(this);
         this.generateTitleRow = this.generateTitleRow.bind(this);
         this.generateSubPhaseRow = this.generateSubPhaseRow.bind(this);
         this.generateRows = this.generateRows.bind(this);
         this.setClicked = this.setClicked.bind(this);
+        //this.persistState = this.persistState.bind(this);
+        
+        
         
         // Create the initial state
         this.state = this.initialize();
+    }
+    
+    parseProps(props) {
+        console.log(props.location.query);
+        this.properties = JSON.parse(props.location.query);
+        
     }
     
     // Create the array of checked state 
@@ -27,9 +40,9 @@ export class GaitTable extends React.Component {
         this.tdClass = "col-sm-1";
         
         return {
-            checked: this.props.categories.map((ele, i, arr) => {
+            checked: this.properties.categories.map((ele, i, arr) => {
                 return this.subPhases.map(() => {
-                    return 0
+                    return 0;
                 });
             })
         };
@@ -58,7 +71,7 @@ export class GaitTable extends React.Component {
         return (
             <tr className="danger">
                 <td className="col-sm-2">
-                    <h2>{this.props.title}</h2>
+                    <h2>{this.properties.title}</h2>
                 </td>
                 <td className={this.tdClass} style={noRight}>
                     <h3>{this.phases[0]}</h3>
@@ -116,7 +129,7 @@ export class GaitTable extends React.Component {
 
 
         // Loop through the categories
-        return this.props.categories.map((cat, i, arr) => {
+        return this.properties.categories.map((cat, i, arr) => {
             // Loop through the box levels for this category
             let cells = cat.boxes.map((ele, j, arr) => {
                 // Initialize the default function and the one that can be clicked
@@ -168,11 +181,14 @@ export class GaitTable extends React.Component {
     setClicked(i, j) {
         let clicked = this.state.checked;
         clicked[i][j] = clicked[i][j] ? 0 : 1;
-        console.log(`i: ${i} j: ${j}`);
+        console.log(`category: ${this.properties.categories[i].name} ` + 
+                    `subPhase: ${this.subPhases[j]}`);
         this.setState({
             checked: clicked
         });
     }
+    
+    
 
     render() {
         // Define the styles and classname for the table
@@ -191,14 +207,15 @@ export class GaitTable extends React.Component {
                         {this.generateRows()}
                     </tbody>
                 </table>
+                <button >Save</button>
             </div>
         );
     }
 };
 
 
-GaitTable.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    categories: React.PropTypes.array.isRequired,
-}
+// GaitTable.propTypes = {
+//     title: React.PropTypes.string.isRequired,
+//     categories: React.PropTypes.array.isRequired,
+// }
 

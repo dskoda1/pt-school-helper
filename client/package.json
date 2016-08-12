@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "cortex": "^6.2.3",
+    "history": "^3.0.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-json-table": "0.0.4",

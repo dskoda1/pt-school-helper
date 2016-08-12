@@ -54,7 +54,6 @@ export class Login extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         let username = this.state.username;
         let password = this.state.password;
         return (
