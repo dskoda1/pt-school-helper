@@ -15,6 +15,7 @@ require('../src/css/application.scss');
 
 localStorage.setItem('user', '');
 
+
 // Render application to DOM
 ReactDOM.render((
     <Router history={hashHistory}>

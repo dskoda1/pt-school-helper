@@ -4,7 +4,9 @@
   "description": "the server side app for pt-school-help",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "webpack-watch": "webpack -w",
+    "express-server": "nodemon ./server",
+    "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,9 +36,12 @@
     "mysql": "^2.11.1",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "devDependencies": {
+    "concurrently": "^2.2.0",
     "nodemon": "^1.10.0"
   }
 }
