@@ -19,19 +19,34 @@ router.use(morgan(':method :url in :response-time ms status :status'))
 let routes = require('./routes/user');
 routes(router);
 
+let webpack = require('webpack')
+let webpackDevMiddleware = require('webpack-dev-middleware');
+let webpackHotMiddleware = require('webpack-hot-middleware');
 
-// router.get('/sockjs-node/info', cors(), (req, res) => {
-//     res.end();
-// })
+let config = require('./webpack.config.js');
+console.log('compiling..');
+const compiler = webpack(config);
+router.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    stats: {colors: true}
+}))
+router.use(webpackHotMiddleware(compiler, {
+    log: console.log
+}))
+
+console.log('done compiling');
+
 
 // Direct express to serve react app in client/build
+router.get('/', (req, res) => {
+    res.sendFile(path.resolve('../client/build/index.html'));
+})
 //router.use(express.static(path.resolve('../client/build')))
-router.use('/', express.static(path.resolve('../client/build')));
-router.listen(process.env.PORT || 8080);
+//router.use('*', express.static(path.resolve('../client/build')));
 // Start listening
-// router.listen(process.env.PORT,(err) => {
-//     if (err) return console.error(err);
-//     //console.log(path.join(__dirname, '../client/build/index.html'))
+router.listen(8080,(err) => {
+    if (err) return console.error(err);
+    //console.log(path.join(__dirname, '../client/build/index.html'))
 
-//     console.log('listening at ' + process.env.PORT);
-// })
+    console.log('listening at ' + 8080);
+})

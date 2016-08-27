@@ -4,7 +4,7 @@
   "description": "the server side app for pt-school-help",
   "main": "index.js",
   "scripts": {
-    "webpack-watch": "webpack -w",
+    "webpack-watch": "webpack -w --hot --inline",
     "express-server": "nodemon ./server",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "concurrently": "^2.2.0",
-    "nodemon": "^1.10.0"
+    "nodemon": "^1.10.0",
+    "webpack-hot-middleware": "^2.12.2"
   }
 }
